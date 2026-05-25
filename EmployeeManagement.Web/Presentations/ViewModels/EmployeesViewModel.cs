@@ -5,7 +5,7 @@ namespace WebApp_Exercise.Presentations.ViewModels;
 /// <summary>
 /// 商品登録ユースケース用ViewModelクラス
 /// </summary>
-public class ItemRegisterViewModel
+public class EmployeesViewModel
 {
     /// <summary>
     /// 商品名

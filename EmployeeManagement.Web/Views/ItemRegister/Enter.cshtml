@@ -1,5 +1,5 @@
 @using WebApp_Exercise.Presentations.ViewModels
-@model ItemRegisterViewModel
+@model DepartmentsViewModel
 @{
     ViewData["Title"] = "商品登録（入力）";
 }
@@ -10,38 +10,15 @@
         <div class="col-md-5 col-sm-7">
 
             @* 送信先はControllerのConfirm()アクション*@
-            <form asp-action="Confirm" asp-controller="ItemRegister" method="post">
+            <form asp-action="Confirm" asp-controller="Departments" method="post">
 
-                @* 商品名 *@
+                @* 部門名 *@
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
 
-                @* 単価 *@
-                <div class="mb-3">
-                    <label asp-for="Price" class="form-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-
-                @* 在庫数 *@
-                <div class="mb-3">
-                    <label asp-for="Stock" class="form-label"></label>
-                    <input asp-for="Stock" class="form-control" />
-                    <span asp-validation-for="Stock" class="text-danger"></span>
-                </div>
-
-                @* 商品カテゴリ *@
-                <div class="mb-3">
-                    <label asp-for="CategoryId" class="form-label"></label>
-                    <select asp-for="CategoryId"
-                            asp-items="Model.Categories"
-                            class="form-control">
-                    </select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
-                </div>
 
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary">完了</button>

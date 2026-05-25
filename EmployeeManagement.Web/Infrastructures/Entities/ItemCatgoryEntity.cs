@@ -21,5 +21,5 @@ public class ItemCategoryEntity {
     /// ナビゲーションプロパティ（1対多）
     /// 商品
     /// </summary>
-    public List<ItemEntity>? Items { get; set; }
+    public List<DeptEntity>? Items { get; set; }
 }

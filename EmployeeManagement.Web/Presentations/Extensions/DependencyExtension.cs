@@ -54,13 +54,13 @@ public static class DependencyExtension
         // ドメインモデル:商品カテゴリと商品カテゴリエンティティの相互変換インターフェイスの実装
         services.AddScoped<ItemCategoryEntityAdapter>();
         // ドメインモデル:商品と商品エンティティの相互変換インターフェイスの実装
-        services.AddScoped<ItemEntityAdapter>();
+        services.AddScoped<DeptEntityAdapter>();
         // ドメインモデル:商品在庫と商品在庫エンティティの相互変換インターフェイスの実装
         services.AddScoped<ItemStockEntityAdapter>();
         // ドメインオブジェクト:商品カテゴリのCRUD操作インターフェイス実装
         services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
         // ドメインオブジェクト:商品のCRUD操作インターフェイスの実装
-        services.AddScoped<IItemRepository, ItemRepository>();
+        services.AddScoped<IDeptRepository, DeptRepository>();
     }
 
     /// <summary>
@@ -69,8 +69,8 @@ public static class DependencyExtension
     /// <param name="services">DIコンテナ</param>
     private static void SettingApplications(IServiceCollection services)
     {
-        // 商品登録サービスインターフェイスの実装
-        services.AddScoped<IItemRegisterService, ItemRegisterService>();
+        // 部門登録サービスインターフェイスの実装
+        services.AddScoped<IDeptRegisterService, DeptRegisterService>();
     }
 
 
@@ -80,13 +80,13 @@ public static class DependencyExtension
     /// <param name="services">DIコンテナ</param>
     private static void SettingPresentations(IServiceCollection services)
     {
-        // 商品登録ViewModelをドメインオブジェクト:商品に変換するアダプターインターフェイスの実装
-        services.AddScoped<ItemRegisterViewModelAdapter>();
-        // TempDataへのItemRegisterViewの保存・復元するためのクラス
+        // 部門登録ViewModelをドメインオブジェクト:部門に変換するアダプターインターフェイスの実装
+        services.AddScoped<DepartmentsViewModelAdapter>();
+        // TempDataへのDepartmentsViewModelの保存・復元するためのクラス
         // コンストラクタを利用して明示的にDIコンテナにインスタンスを登録する
         services.AddScoped(
             provider =>
-            new TempDataStore<ItemRegisterViewModel>("ItemRegisterViewModel")
+            new TempDataStore<DepartmentsViewModel>("DepartmentsViewModel")
         );
     }       
 }

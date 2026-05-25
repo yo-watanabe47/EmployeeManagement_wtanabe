@@ -16,7 +16,7 @@ public class ItemStock
     /// <summary>
     /// 商品
     /// </summary>
-    public Item? Item { get; private set; } = null;
+   ///  public Item? Item { get; private set; } = null;
     /// <summary>
     /// コンストラクタ
     /// </summary>
@@ -78,10 +78,10 @@ public class ItemStock
     /// 商品の変更
     /// </summary>
     /// <param name="item"></param>
-    public void ChangeProduct(Item? item)
-    {
-        Item = item;
-    }
+   ///  public void ChangeProduct(Item? item)
+   ///  {
+     ///    Item = item;
+    /// }
 
     /// <summary>
     /// 等価性の検証
@@ -96,10 +96,10 @@ public class ItemStock
     }
     public override int GetHashCode() => Id?.GetHashCode() ?? 0;
 
-    public override string ToString()
-    {
-        var idText = Id?.ToString() ?? "未登録";
-        var ItemText = Item?.ToString() ?? "";
-        return $"商品在庫Id={idText},在庫数={Stock},商品={ItemText}"; 
-    }
+  ///  public override string ToString()
+   ///  {
+   ///      var idText = Id?.ToString() ?? "未登録";
+  ///       var ItemText = Item?.ToString() ?? "";
+   ///      return $"商品在庫Id={idText},在庫数={Stock},商品={ItemText}"; 
+    /// }
 }

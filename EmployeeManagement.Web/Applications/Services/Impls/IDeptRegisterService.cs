@@ -4,43 +4,43 @@ using WebApp_Exercise.Exceptions;
 using WebApp_Exercise.Infrastructures.Context;
 namespace WebApp_Exercise.Applications.Services.Impls;
 /// <summary>
-/// 商品登録サービスインターフェイスの実装
+/// 部門登録サービスインターフェイスの実装
 /// </summary>
-public class ItemRegisterService : IItemRegisterService
+public class DeptRegisterService : IDeptRegisterService
 {
     // アプリケーションで利用するDbContext継承
     private readonly AppDbContext _context;
-    // 商品のCRUD操作インターフェイス
-    private readonly IItemRepository _itemRepository;
+    // 部門のCRUD操作インターフェイス
+    private readonly IDeptRepository _deptRepository;
     // 商品カテゴリのCRUD操作インターフェイス
     private readonly IItemCategoryRepository _itemCategoryRepository;
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="context">アプリケーションで利用するDbContext継承</param>
-    /// <param name="itemRepository">商品のCRUD操作インターフェイス</param>
+    /// <param name="deptRepository">部門のCRUD操作インターフェイス</param>
     /// <param name="itemCategoryRepository">商品カテゴリのCRUD操作インターフェイス</param>
-    public ItemRegisterService(
+    public DeptRegisterService(
         AppDbContext context,
-        IItemRepository itemRepository,
+        IDeptRepository deptRepository,
         IItemCategoryRepository itemCategoryRepository)
     {
         _context = context;
-        _itemRepository = itemRepository;
+        _deptRepository = deptRepository;
         _itemCategoryRepository = itemCategoryRepository;
     }
 
     /// <summary>
-    /// 引数に指定された商品名の有無を調べる
+    /// 引数に指定された部門名の有無を調べる
     /// </summary>
-    /// <param name="name">商品名</param>
+    /// <param name="name">部門名</param>
     /// <exception cref="ExistsExceotioin">存在する場合にスローする例外</exception>
     public void Exists(string name)
     {
-        var exists = _itemRepository.ExistsByName(name);
+        var exists = _deptRepository.ExistsByName(name);
         if (exists)
         {
-            throw new ExistsException($"商品名:{name}は既に存在します。");
+            throw new ExistsException($"部門名:{name}は既に存在します。");
         }
     }
 
@@ -70,15 +70,15 @@ public class ItemRegisterService : IItemRegisterService
     }
 
     /// <summary>
-    /// 商品と在庫を永続化する
+    /// 部門を永続化する
     /// </summary>
-    /// <param name="item">永続化する商品</param>
-    public void Register(Item item)
+    /// <param name="dept">永続化する部門</param>
+    public void Register(Dept dept)
     {
         try
         {
             _context.Database.BeginTransaction();
-            _itemRepository.Create(item);
+            _deptRepository.Create(dept);
             _context.Database.CommitTransaction();
             
         }catch 

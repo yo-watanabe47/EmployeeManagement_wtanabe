@@ -1,9 +1,18 @@
+using WebApp_Exercise.Presentations.Extensions;
+using WebApp_Exercise.Presentations.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+// 依存定義および依存性注入
+builder.Services.SettingDependencyInjection(builder.Configuration); 
 
 var app = builder.Build();
+
+// IngternalExceptionをハンドリングするミドルウェアを有効化する
+app.UseMiddleware<InternalExceptionLoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

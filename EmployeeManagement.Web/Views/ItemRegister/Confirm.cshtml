@@ -1,5 +1,5 @@
 @using WebApp_Exercise.Presentations.ViewModels
-@model ItemRegisterViewModel
+@model DepartmentsViewModel
 @{
     ViewData["Title"] = "商品登録（確認）";
 }
@@ -12,43 +12,12 @@
             <table class="table table-hover">
                 <tbody>
                     <tr>
-                        @* 商品名を表示 *@
+                        @* 部門名を表示 *@
                         <td class="fw-bold">
                             @Html.DisplayNameFor(m => m.Name)
                         </td>
                         <td>
                             @Html.DisplayFor(m => m.Name)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        @* 単価を表示 *@
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.Price)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        @* 在庫数を表示 *@
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.Stock)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.Stock)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        @* 商品カテゴリ名を表示
-                           CategoryName は Controller で設定済み *@
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.CategoryName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.CategoryName)
                         </td>
                     </tr>
                 </tbody>
@@ -58,21 +27,18 @@
                 @* POST リクエスト(Register / Back)に値を渡すために hidden を使う *@
                 @* これが無いと、次の画面で ViewModel の値が失われる *@
                 <input type="hidden" asp-for="Name" />
-                <input type="hidden" asp-for="Price" />
-                <input type="hidden" asp-for="Stock" />
-                <input type="hidden" asp-for="CategoryId" />
-                <input type="hidden" asp-for="CategoryName" />
+
 
                 @* formaction / formmethod
                    ボタンごとに送信先アクションを切り替える *@
                 <div class="text-center mt-4">
                     <button type="submit"
-                            formaction="@Url.Action("Register", "ItemRegister")"
+                            formaction="@Url.Action("Register", "Departments")"
                             formmethod="post"
                             class="btn btn-primary">登録</button>
 
                     <button type="submit"
-                            formaction="@Url.Action("Back", "ItemRegister")"
+                            formaction="@Url.Action("Back", "Departments")"
                             formmethod="post"
                             class="btn btn-secondary">戻る</button>
                 </div>

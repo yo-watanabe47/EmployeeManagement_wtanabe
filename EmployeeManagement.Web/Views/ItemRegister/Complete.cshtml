@@ -1,5 +1,5 @@
 @using WebApp_Exercise.Presentations.ViewModels
-@model ItemRegisterViewModel
+@model DepartmentsViewModel
 @{
     ViewData["Title"] = "商品登録（完了）";
 }
@@ -24,39 +24,12 @@
                             @Html.DisplayFor(m => m.Name)
                         </td>
                     </tr>
-
-                    <tr>
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.Price)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.Stock)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.Stock)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="fw-bold">
-                            @Html.DisplayNameFor(m => m.CategoryName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => m.CategoryName)
-                        </td>
-                    </tr>
                 </tbody>
             </table>
 
             @* 続けて登録 *@
             <a asp-action="Enter"
-               asp-controller="ItemRegister"
+               asp-controller="Departments"
                class="btn btn-primary mt-3">続けて登録する</a>
 
             @* メニューに戻る *@
