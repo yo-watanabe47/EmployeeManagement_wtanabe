@@ -18,6 +18,10 @@ public static class DependencyExtension
         services.AddScoped<IDepartmentsService, DepartmentsService>();
         services.AddScoped<IDepartmentsRepository, DepartmentsRepository>();
         services.AddScoped<DepartmentsEntityAdapter>();
+
+        services.AddScoped<IEmployeesService, EmployeesService>();
+        services.AddScoped<IEmployeesRepository, EmployeesRepository>();
+        services.AddScoped<EmployeesEntityAdapter>();
         return services;
     }
 

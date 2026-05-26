@@ -7,6 +7,8 @@ namespace WebApp_Exercise.Infrastructures.Context;
 public class AppDbContext : DbContext
 {
     public DbSet<DepartmentsEntity> Departments { get; set; } = null!;
+        public DbSet<EmployeesEntity> Employees { get; set; } = null!;
+        public DbSet<LoginEntity> Logins { get; set; } = null!;
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
