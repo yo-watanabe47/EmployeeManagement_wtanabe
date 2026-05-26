@@ -18,18 +18,7 @@ public static class DependencyExtension
     /// </summary>
     /// <param name="services">DIコンテナ</param>
     /// <param name="configuration">アプリケーション環境</param>
-    public static void SettingDependencyInjection(
-        this IServiceCollection services, IConfiguration configuration)
-    {
-        // EntityFramework Coreのインスタンス生成と依存定義
-        SettingEntityFrameworkCore(configuration, services);
-        // インフラストラクチャ層のインスタンス生成と依存定義
-        SettingInfrastructures(services);
-        // アプリケーション層のインスタンス生成と依存定義
-        SettingApplications(services);
-        // プレゼンテーション層のインスタンス生成と依存定義
-        SettingPresentations(services);
-    }
+
 
     /// <summary>
     /// EntityFramework Coreのインスタンス生成と依存定義
@@ -45,48 +34,7 @@ public static class DependencyExtension
             options.UseNpgsql(connectionString));
     }
 
-    /// <summary>
-    /// インフラストラクチャ層のインスタンス生成と依存定義
-    /// </summary>
-    /// <param name="services">DIコンテナ</param>
-    private static void SettingInfrastructures(IServiceCollection services)
-    {
-        // ドメインモデル:商品カテゴリと商品カテゴリエンティティの相互変換インターフェイスの実装
-        services.AddScoped<ItemCategoryEntityAdapter>();
-        // ドメインモデル:商品と商品エンティティの相互変換インターフェイスの実装
-        services.AddScoped<ItemEntityAdapter>();
-        // ドメインモデル:商品在庫と商品在庫エンティティの相互変換インターフェイスの実装
-        services.AddScoped<ItemStockEntityAdapter>();
-        // ドメインオブジェクト:商品カテゴリのCRUD操作インターフェイス実装
-        services.AddScoped<IItemCategoryRepository, ItemCategoryRepository>();
-        // ドメインオブジェクト:商品のCRUD操作インターフェイスの実装
-        services.AddScoped<IItemRepository, ItemRepository>();
-    }
-
-    /// <summary>
-    /// アプリケーション層のインスタンス生成と依存定義
-    /// </summary>
-    /// <param name="services">DIコンテナ</param>
-    private static void SettingApplications(IServiceCollection services)
-    {
-        // 商品登録サービスインターフェイスの実装
-        services.AddScoped<IItemRegisterService, ItemRegisterService>();
-    }
 
 
-    /// <summary>
-    /// プレゼンテーション層のインスタンス生成と依存定義
-    /// </summary>
-    /// <param name="services">DIコンテナ</param>
-    private static void SettingPresentations(IServiceCollection services)
-    {
-        // 商品登録ViewModelをドメインオブジェクト:商品に変換するアダプターインターフェイスの実装
-        services.AddScoped<ItemRegisterViewModelAdapter>();
-        // TempDataへのItemRegisterViewの保存・復元するためのクラス
-        // コンストラクタを利用して明示的にDIコンテナにインスタンスを登録する
-        services.AddScoped(
-            provider =>
-            new TempDataStore<ItemRegisterViewModel>("ItemRegisterViewModel")
-        );
-    }       
+    
 }

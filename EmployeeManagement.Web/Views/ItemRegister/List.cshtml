@@ -1,0 +1,19 @@
+@using WebApp_Exercise.Presentations.ViewModels
+@model IEnumerable<DepartmentsViewModel>
+<table class="table">
+    <thead>
+        <tr>
+            <th>部門ID</th>
+            <th>部門名</th>
+        </tr>
+    </thead>
+    <tbody>
+          @foreach (var dept in Model)
+            {
+                <tr>
+                    <td>@dept.Id</td>
+                    <td>@dept.DeptName</td>
+                </tr>
+            }
+    </tbody>
+</table>
