@@ -11,12 +11,10 @@ namespace WebApp_Exercise.Presentations.Controllers;
 public class DepartmentsController : Controller
 {
     private readonly IDepartmentsService _service;
-    private readonly TempDataStore<DepartmentsViewModel> _tempDataStore;
 
-    public DepartmentsController(IDepartmentsService service, TempDataStore<DepartmentsViewModel> tempDataStore)
+    public DepartmentsController(IDepartmentsService service )
     {
         _service = service;
-        _tempDataStore = tempDataStore;
     }
 [Route("List")]
 
