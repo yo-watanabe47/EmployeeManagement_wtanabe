@@ -1,9 +1,10 @@
 using WebApp_Exercise.Applications.Domains;
 namespace WebApp_Exercise.Applications.Services;
 /// <summary>
-/// 商品登録サービスインターフェイス
+/// 部門登録サービスインターフェイス
 /// </summary>
 public interface IDepartmentsService
 {
        List<Departments> GetDepartments();
+       void EnterDepartment(Departments department);
 }

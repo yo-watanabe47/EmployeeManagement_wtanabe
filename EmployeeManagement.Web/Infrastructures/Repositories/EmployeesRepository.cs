@@ -35,6 +35,12 @@ public class EmployeesRepository : IEmployeesRepository
         var employees = employeesEntities.Select(entity => _employeesAdapter.Restore(entity)).ToList();
         return employees;
     }
-
+    
+    public void Create(Employees employee)
+    {
+        var employeesEntity = _employeesAdapter.Convert(employee);
+        _appDbContext.Employees.Add(employeesEntity);
+        _appDbContext.SaveChanges();
+    }
 
 }

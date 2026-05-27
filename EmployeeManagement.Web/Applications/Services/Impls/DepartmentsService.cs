@@ -12,14 +12,31 @@ namespace WebApp_Exercise.Applications.Services.Impls;
 public class DepartmentsService : IDepartmentsService
 {
     private readonly IDepartmentsRepository _departmentsRepository;
+    private readonly AppDbContext _context;
     public DepartmentsService(AppDbContext context, IDepartmentsRepository departmentsRepository)
     {
         _departmentsRepository = departmentsRepository;
+        _context = context;
     }
+    
     public List<Departments> GetDepartments()
     {
         return _departmentsRepository.FindAll();
 
     }
 
+    public void EnterDepartment(Departments department)
+    {
+        try
+        {
+            _context.Database.BeginTransaction();
+            _departmentsRepository.Create(department);
+            _context.Database.CommitTransaction();
+            
+        }catch 
+        {
+            _context.Database.RollbackTransaction();
+            throw;
+        }
+    }
 }

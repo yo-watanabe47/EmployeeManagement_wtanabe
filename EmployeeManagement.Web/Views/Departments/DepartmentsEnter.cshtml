@@ -1,0 +1,38 @@
+@using WebApp_Exercise.Presentations.ViewModels
+@model DepartmentsEnterViewModel
+@{
+    ViewData["Title"] = "部門登録（入力）";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-sm-7">
+
+            @* 送信先はControllerのConfirm()アクション*@
+            <form asp-action="DepartmentsEnter" asp-controller="Departments" method="post">
+
+                @* 部門名 *@
+                <div class="mb-3">
+                    <label asp-for="DeptName" class="form-label"></label>
+                    <input asp-for="DeptName" class="form-control" />
+                    <span asp-validation-for="DeptName" class="text-danger"></span>
+                </div>
+
+                @* 登録者ID *@
+                <div class="mb-3">
+                    <label asp-for="CreatedEmpNo" class="form-label"></label>
+                    <input asp-for="CreatedEmpNo" class="form-control" />
+                    <span asp-validation-for="CreatedEmpNo" class="text-danger"></span>
+                </div>
+
+                
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">完了</button>
+                    <a asp-action="DepartmentsView" class="btn btn-secondary">戻る</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

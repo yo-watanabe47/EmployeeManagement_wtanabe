@@ -11,40 +11,40 @@ namespace WebApp_Exercise.Presentations.Controllers;
 public class EmployeesController : Controller
 {
     private readonly IEmployeesService _service;
+    private readonly EmployeesViewModelAdapter _adapter;
 
-    public EmployeesController(IEmployeesService service )
+    public EmployeesController(IEmployeesService service, EmployeesViewModelAdapter adapter)
     {
         _service = service;
+        _adapter = adapter;
     }
 [Route("EmployeesView")]
 
     public IActionResult EmployeesView()
     {
-       // try
-        //{
+        try
+        {
             var employees = _service.GetEmployees();
-            var viewModels = employees.Select(emp => new EmployeesViewModel
-            {
-                Id = emp.Id,
-                EmployeeNo = emp.Employee_No,
-                Name = emp.Name,
-                Birthday = emp.Birthday,
-                Email = emp.Email,
-                HireDate = emp.HireDate,
-                DeptId = emp.DeptId,
-                DeptName = emp.DeptName,
-                Status = emp.Status,
-                CreatedAt = emp.Created_at,
-                CreatedEmpNo = emp.Created_emp_no,
-                UpdatedAt = emp.Updated_at,
-                UpdatedEmpNo = emp.Updated_emp_no
-            }).ToList();
+            var viewModels = _adapter.Convert(employees);
             return View(viewModels);
-       // }
-        //catch (Exception ex)
-        //{
-          //  TempData["ErrorMessage"] = ex.Message;
-            //return RedirectToAction("Error", "Home");
-        //}
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMessage"] = ex.Message;
+            return RedirectToAction("Error", "Home");
+        }
     }
+    [HttpGet("EmployeesEnter")]
+    public IActionResult EmployeesEnter()
+    {
+        return View();
+     } 
+
+[HttpPost("EmployeesEnter")]
+    public IActionResult EmployeesEnter(EmployeesEnterViewModel viewModel)
+    {
+    var employees = _adapter.Restore(viewModel);
+    _service.EnterEmployee(employees);
+    return RedirectToAction("EmployeesView");
+    } 
 }

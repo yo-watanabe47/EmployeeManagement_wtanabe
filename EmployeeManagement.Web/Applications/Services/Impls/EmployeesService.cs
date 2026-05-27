@@ -22,4 +22,18 @@ public class EmployeesService : IEmployeesService
 
     }
 
+ public void EnterEmployee(Employees employee)
+    {
+        try
+        {
+            _context.Database.BeginTransaction();
+            _employeesRepository.Create(employee);
+            _context.Database.CommitTransaction();
+            
+        }catch 
+        {
+            _context.Database.RollbackTransaction();
+            throw;
+        }
+    }
 }

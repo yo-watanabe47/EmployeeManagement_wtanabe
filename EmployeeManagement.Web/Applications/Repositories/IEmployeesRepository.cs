@@ -6,4 +6,6 @@ namespace WebApp_Exercise.Applications.Repositories;
 public interface IEmployeesRepository
 {
   List<Employees> FindAll();
+  void Create(Employees employee);
+
 }

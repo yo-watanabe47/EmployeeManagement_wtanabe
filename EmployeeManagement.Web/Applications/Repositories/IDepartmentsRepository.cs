@@ -6,4 +6,5 @@ namespace WebApp_Exercise.Applications.Repositories;
 public interface IDepartmentsRepository
 {
   List<Departments> FindAll();
+  void Create(Departments department);
 }

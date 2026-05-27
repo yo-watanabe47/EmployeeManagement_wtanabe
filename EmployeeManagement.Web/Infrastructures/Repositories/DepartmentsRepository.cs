@@ -4,6 +4,7 @@ using WebApp_Exercise.Applications.Repositories;
 using WebApp_Exercise.Exceptions;
 using WebApp_Exercise.Infrastructures.Adapters;
 using WebApp_Exercise.Infrastructures.Context;
+using WebApp_Exercise.Infrastructures.Entities;
 namespace WebApp_Exercise.Infrastructures.Repositories;
 /// <summary>
 /// ドメインオブジェクト:商品のCRUD操作インターフェイスの実装
@@ -12,6 +13,7 @@ public class DepartmentsRepository : IDepartmentsRepository
 {
     // DbContext継承クラス
     private readonly AppDbContext _appDbContext;
+
     // ItemとItemEntityの相互変換
     private readonly DepartmentsEntityAdapter _departmentsAdapter;
    
@@ -32,6 +34,12 @@ public class DepartmentsRepository : IDepartmentsRepository
         var departmentsEntities = _appDbContext.Departments.ToList();
         var departments = departmentsEntities.Select(entity => _departmentsAdapter.Restore(entity)).ToList();
         return departments;
+    }
+    public void Create(Departments department)
+    {
+        var departmentsEntity = _departmentsAdapter.Convert(department);
+        _appDbContext.Departments.Add(departmentsEntity);
+        _appDbContext.SaveChanges();
     }
 
 

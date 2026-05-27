@@ -17,9 +17,11 @@ IRestorer<Employees, EmployeesEntity>
         var employees = new Employees(
             target.Id,
             target.EmployeeNo,
-            target.Name, target.Birthday,
+            target.Name, 
+            target.Birthday,
             target.Email,
-            target.HireDate, target.DeptId,
+            target.HireDate, 
+            target.DeptId,
             target.Status,
             target.CreatedAt,
             target.CreatedEmpNo,
@@ -28,5 +30,29 @@ IRestorer<Employees, EmployeesEntity>
             target.Departments?.DeptName
              );
         return employees;
+    }
+
+    public EmployeesEntity Convert(Employees domain)
+    {
+        if (domain == null)
+        {
+            throw new InternalException("引数domainがnullのため変換できません。");
+        }
+        return new EmployeesEntity
+        {
+        Id = domain.Id,
+        EmployeeNo = domain.EmployeeNo,
+        Name = domain.Name,
+        Birthday = domain.Birthday,
+        Email = domain.Email,
+        HireDate = domain.HireDate,
+        DeptId = domain.DeptId,
+        Status = domain.Status,
+        Createdat = domain.Created_at,
+        CreatedEmpNo = domain.Created_emp_no,
+        Updatedat = domain.Updated_at,
+        UpdatedEmpNo = domain.Updated_emp_no,
+        DeptName = domain.DeptName,
+        };
     }
 }

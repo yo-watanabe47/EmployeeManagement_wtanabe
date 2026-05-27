@@ -11,4 +11,6 @@ public class DepartmentsViewModel
         public string CreatedEmpNo { get; init; } = string.Empty;
         public DateTime? UpdatedAt { get; init; } 
         public string? UpdatedEmpNo { get; init; }
+
+
 }

@@ -14,7 +14,30 @@ IRestorer<Departments, DepartmentsEntity>
 
 public Departments Restore(DepartmentsEntity target)
     {
-        var departments = new Departments(target.Id, target.DeptName, target.CreatedAt, target.CreatedEmpNo, target.UpdatedAt, target.UpdatedEmpNo);
+        var departments = new Departments(
+            target.Id,
+            target.DeptName,
+            target.CreatedAt,
+            target.CreatedEmpNo,
+            target.UpdatedAt,
+            target.UpdatedEmpNo);
         return departments;
+    }
+
+        public DepartmentsEntity Convert(Departments domain)
+    {
+        if (domain == null)
+        {
+            throw new InternalException("引数domainがnullのため変換できません。");
+        }
+        return new DepartmentsEntity
+        {
+            Id = domain.Id,
+            DeptName = domain.Dept_name,
+            CreatedAt = domain.Created_at,
+            CreatedEmpNo = domain.Created_emp_no,
+            UpdatedAt = domain.Updated_at,
+            UpdatedEmpNo = domain.Updated_emp_no
+        };
     }
 }

@@ -6,4 +6,5 @@ namespace WebApp_Exercise.Applications.Services;
 public interface IEmployeesService
 {
        List<Employees> GetEmployees();
+       void EnterEmployee(Employees employee);
 }

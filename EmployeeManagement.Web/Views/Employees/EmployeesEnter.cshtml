@@ -1,0 +1,73 @@
+@using WebApp_Exercise.Presentations.ViewModels
+@model  EmployeesEnterViewModel
+@{
+    ViewData["Title"] = "社員登録（入力）";
+}
+<h2 class="text-center mt-4">@ViewData["Title"]</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-sm-7">
+
+            @* 送信先はControllerのConfirm()アクション*@
+            <form asp-action="EmployeesEnter" asp-controller="Employees" method="post">
+
+                @* 社員番号 *@
+                <div class="mb-3">
+                    <label asp-for="EmployeeNo" class="form-label"></label>
+                    <input asp-for="EmployeeNo" class="form-control" />
+                    <span asp-validation-for="EmployeeNo" class="text-danger"></span>
+                </div>
+
+                @* 氏名 *@
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                @* 生年月日 *@
+                <div class="mb-3">
+                    <label asp-for="Birthday" class="form-label"></label>
+                    <input asp-for="Birthday" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+                 @* メールアドレス *@
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                @* 入社日 *@
+                <div class="mb-3">
+                    <label asp-for="HireDate" class="form-label"></label>
+                    <input asp-for="HireDate" class="form-control" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+                 @* 部門ID *@
+                <div class="mb-3">
+                    <label asp-for="DeptNo" class="form-label"></label>
+                    <input asp-for="DeptNo" class="form-control" />
+                    <span asp-validation-for="DeptNo" class="text-danger"></span>
+                </div>
+                @* 在籍状態 *@
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                @* 登録者ID *@
+                <div class="mb-3">
+                    <label asp-for="CreatedEmpNo" class="form-label"></label>
+                    <input asp-for="CreatedEmpNo" class="form-control" />
+                    <span asp-validation-for="CreatedEmpNo" class="text-danger"></span>
+                </div>
+               
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">完了</button>
+                    <a asp-action="EmployeesView" class="btn btn-secondary">戻る</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

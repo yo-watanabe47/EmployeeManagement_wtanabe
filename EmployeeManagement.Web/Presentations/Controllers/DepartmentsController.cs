@@ -11,10 +11,12 @@ namespace WebApp_Exercise.Presentations.Controllers;
 public class DepartmentsController : Controller
 {
     private readonly IDepartmentsService _service;
+    private readonly DepartmentsViewModelAdapter _adapter;
 
-    public DepartmentsController(IDepartmentsService service )
+    public DepartmentsController(IDepartmentsService service, DepartmentsViewModelAdapter adapter)
     {
         _service = service;
+        _adapter = adapter;
     }
 [Route("DepartmentsView")]
 
@@ -23,15 +25,7 @@ public class DepartmentsController : Controller
         try
         {
             var departments = _service.GetDepartments();
-            var viewModels = departments.Select(dept => new DepartmentsViewModel
-            {
-                Id = dept.Id,
-                DeptName = dept.Dept_name,
-                CreatedAt = dept.Created_at,
-                CreatedEmpNo = dept.Created_emp_no,
-                UpdatedAt = dept.Updated_at,
-                UpdatedEmpNo = dept.Updated_emp_no
-            }).ToList();
+            var viewModels = _adapter.Convert(departments);
             return View(viewModels);
         }
         catch (Exception ex)
@@ -40,4 +34,19 @@ public class DepartmentsController : Controller
             return RedirectToAction("Error", "Home");
         }
     }
+[HttpGet("DepartmentsEnter")]
+    public IActionResult DepartmentsEnter()
+    {
+        return View();
+     } 
+
+[HttpPost("DepartmentsEnter")]
+    public IActionResult DepartmentsEnter(DepartmentsEnterViewModel viewModel)
+    {
+    var departments = _adapter.Restore(viewModel);
+    _service.EnterDepartment(departments);
+    return RedirectToAction("DepartmentsView");
+    } 
+
+
 }
