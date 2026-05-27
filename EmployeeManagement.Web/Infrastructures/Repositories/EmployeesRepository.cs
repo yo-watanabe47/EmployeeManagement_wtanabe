@@ -30,7 +30,7 @@ public class EmployeesRepository : IEmployeesRepository
     public List<Employees> FindAll()
     {
         var employeesEntities = _appDbContext.Employees
-            .Include(e => e.DeptId) // EmployeesEntityのDeptIdプロパティを含める
+            .Include(e => e.Departments) 
             .ToList();
         var employees = employeesEntities.Select(entity => _employeesAdapter.Restore(entity)).ToList();
         return employees;

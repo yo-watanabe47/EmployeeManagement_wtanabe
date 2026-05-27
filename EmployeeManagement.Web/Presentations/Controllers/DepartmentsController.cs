@@ -16,9 +16,9 @@ public class DepartmentsController : Controller
     {
         _service = service;
     }
-[Route("List")]
+[Route("DepartmentsView")]
 
-    public IActionResult List()
+    public IActionResult DepartmentsView()
     {
         try
         {

@@ -36,6 +36,8 @@ namespace WebApp_Exercise.Infrastructures.Entities;
         [Required]
         [Column("dept_id")]
         public int DeptId { get; set; }
+
+        [ForeignKey("DeptId")]
         public DepartmentsEntity? Departments { get; set; } 
         
         [Required]
@@ -47,14 +49,14 @@ namespace WebApp_Exercise.Infrastructures.Entities;
         public DateTime CreatedAt { get; set; }
 
         [Required]
-        [Column("created_emp_no")]
+        [Column("created_no")]
         [StringLength(10)]
         public string CreatedEmpNo { get; set; } = string.Empty;
 
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
-        [Column("updated_emp_no")]
+        [Column("updated_no")]
         [StringLength(10)]
         public string? UpdatedEmpNo { get; set; }
     }

@@ -5,6 +5,10 @@
         <tr>
             <th>部門ID</th>
             <th>部門名</th>
+            <th>作成日時</th>
+            <th>作成者ID</th>
+            <th>更新日時</th>
+            <th>更新者ID</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +17,10 @@
                 <tr>
                     <td>@dept.Id</td>
                     <td>@dept.DeptName</td>
+                    <td>@dept.CreatedAt?</td>
+                    <td>@dept.CreatedEmpNo</td>
+                    <td>@dept.UpdatedAt?</td>
+                    <td>@dept.UpdatedEmpNo</td>
                 </tr>
             }
     </tbody>

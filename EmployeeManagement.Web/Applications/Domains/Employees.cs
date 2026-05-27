@@ -13,6 +13,8 @@ public class Employees
         public string Email { get; set; } 
         public DateOnly HireDate { get; set; }
         public int DeptId { get; set; } 
+        public int Status { get; set; } 
+
     public DateTime? Created_at { get; init; } = DateTime.Now;
 
     public string Created_emp_no { get; init; } = string.Empty;
@@ -21,9 +23,9 @@ public class Employees
     
     public string? Updated_emp_no { get; init; } = null;
 
-    public Departments DeptName { get; set; }
+    public String DeptName { get; set; }
 
-    public Employees(int id , string employee_No ,string name, DateOnly birthday, string email, DateOnly hireDate, int deptId, DateTime created_at, string created_emp_no, DateTime? updated_at, string? updated_emp_no, Departments deptName)
+    public Employees(int id , string employee_No ,string name, DateOnly birthday, string email, DateOnly hireDate, int deptId, int status, DateTime created_at, string created_emp_no, DateTime? updated_at, string? updated_emp_no, String deptName)
     {
         Id = id;
         Employee_No = employee_No;
@@ -32,6 +34,7 @@ public class Employees
         Email = email;
         HireDate = hireDate;
         DeptId = deptId;
+        Status = status;
         Created_at = created_at;
         Created_emp_no = created_emp_no;
         Updated_at = updated_at;
