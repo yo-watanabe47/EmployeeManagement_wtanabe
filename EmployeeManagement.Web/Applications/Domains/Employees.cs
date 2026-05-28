@@ -33,15 +33,14 @@ public class Employees
         string? updated_emp_no,
         String? deptName)
     {
-        // ValidateId(id);
-        // ValidateEmployeeNo(employee_No);
-        // ValidateDeptName(Name);
-        // ValidateBirthday(birthday);
-        // ValidateEmail(email);
-        // ValidateHireDate(hireDate);
-        // ValidateDeptId(deptId);
-        // ValidateStatus(status);
-        // ValidateCreatedEmpNo(created_emp_no);
+        ValidateId(id);
+        ValidateEmployeeNo(employee_No);
+        ValidateName(name);
+        ValidateBirthday(birthday);
+        ValidateEmail(email);
+        ValidateHireDate(hireDate);
+        ValidateDeptId(deptId);
+        ValidateCreatedEmpNo(created_emp_no);
         Id = id;
         Employee_No = employee_No;
         Name = name;
@@ -59,14 +58,14 @@ public class Employees
 
     public Employees(
         string employee_No,
-        string? name,
+        string name,
         DateOnly birthday,
         string email,
         DateOnly hireDate,
         int deptId,
         int status,
         DateTime created_at,
-        string? created_emp_no) 
+        string created_emp_no) 
     :this (
         null,
         employee_No, 
@@ -82,5 +81,62 @@ public class Employees
         null,
         null) {}
 
- 
+
+    private void ValidateId(int? id)
+    {
+        if (id == null)
+        {
+            return;
+        }
+        if (id < 1)
+        {
+            throw new DomainException("商品Idは1以上でなければなりません。");
+        }
+    }
+    private void ValidateEmployeeNo(string? employee_No)
+    {
+        if (string.IsNullOrWhiteSpace(employee_No))
+            throw new DomainException("社員番号は必須です。");
+        if (employee_No.Length > 10)
+            throw new DomainException("社員番号は10文字以内で指定してください。");
+    }
+        private void ValidateName(string? name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new DomainException("氏名は必須です。");
+        if (name.Length > 50)
+            throw new DomainException("氏名は50文字以内で指定してください。");
+    }
+        private void ValidateBirthday(DateOnly birthday)
+    {
+        if (birthday == DateOnly.MinValue)
+            throw new DomainException("生年月日は必須です。");
+    }
+        private void ValidateEmail(string? email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            throw new DomainException("メールアドレスは必須です。");
+        if (email.Length > 100)
+            throw new DomainException("メールアドレスは100文字以内で指定してください。");
+    }
+    
+        private void ValidateHireDate(DateOnly hireDate)
+    {
+        if (hireDate == DateOnly.MinValue)
+            throw new DomainException("入社日は必須です。");
+    
+    }
+        private void ValidateDeptId(int? deptId)
+    {
+        if (deptId == null || deptId <= 0)
+            throw new DomainException("部署IDは必須です。");
+    }
+        private void ValidateCreatedEmpNo(string? created_emp_no)
+    {
+        if (string.IsNullOrWhiteSpace(created_emp_no))
+            throw new DomainException("登録者IDは必須です。");
+        if (created_emp_no.Length > 10)
+            throw new DomainException("登録者IDは10文字以内で指定してください。");
+    }
+
 }

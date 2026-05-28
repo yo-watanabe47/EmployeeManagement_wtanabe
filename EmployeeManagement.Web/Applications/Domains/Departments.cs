@@ -8,11 +8,11 @@ public class Departments
 
     public int? Id { get; private set; }      
 
-    public string Dept_name { get; init; } = string.Empty;    
+    public string? Dept_name { get; init; } = string.Empty;    
 
-    public DateTime Created_at { get; init; } = DateTime.Now;
+    public DateTime? Created_at { get; init; } = DateTime.Now;
 
-    public string Created_emp_no { get; init; } = string.Empty;
+    public string? Created_emp_no { get; init; } = string.Empty;
 
     public DateTime? Updated_at { get; init; } = DateTime.Now;
     
@@ -20,9 +20,9 @@ public class Departments
 
     public Departments(
         int? id ,
-        string dept_name ,
-        DateTime created_at,
-        string created_emp_no,
+        string? dept_name ,
+        DateTime? created_at,
+        string? created_emp_no,
         DateTime? updated_at,
         string? updated_emp_no)
     {
@@ -71,5 +71,7 @@ public class Departments
     {
         if (string.IsNullOrWhiteSpace(created_emp_no))
             throw new DomainException("登録者IDは必須です。");
+        if (created_emp_no.Length > 20)
+            throw new DomainException("登録者IDは10文字以内で指定してください。");
     }
 }

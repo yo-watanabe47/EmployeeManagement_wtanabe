@@ -58,7 +58,13 @@ public IActionResult DepartmentsBack(DepartmentsEnterViewModel viewModel)
 [HttpPost("DepartmentsConfirm")]
 public IActionResult DepartmentsConfirm(DepartmentsEnterViewModel viewModel)
     {
-        var deptname = viewModel.DeptName?.Trim() ?? string.Empty;
+        if (!ModelState.IsValid)
+   {
+        return View("DepartmentsEnter", viewModel);
+    }
+    
+    var deptname = viewModel.DeptName?.Trim() ?? string.Empty;
+    
     try
     {
         _service.Exists(deptname);

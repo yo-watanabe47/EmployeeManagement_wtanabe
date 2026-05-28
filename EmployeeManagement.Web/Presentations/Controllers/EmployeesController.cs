@@ -28,17 +28,17 @@ public class EmployeesController : Controller
 [Route("EmployeesView")]
 public IActionResult EmployeesView()
     {
-        try
-        {
+        // try
+        // {
             var employees = _service.GetEmployees();
             var viewModels = _adapter.Convert(employees);
             return View(viewModels);
-        }
-        catch (Exception ex)
-        {
-            TempData["ErrorMessage"] = ex.Message;
-            return RedirectToAction("Error", "Home");
-        }
+        // }
+        // catch (Exception ex)
+        // {
+        //     //TempData["ErrorMessage"] = ex.Message;
+        //     //return RedirectToAction("Error", "Home");
+        // }
     }
 
 
@@ -61,7 +61,13 @@ public IActionResult EmployeesBack(EmployeesEnterViewModel viewModel)
 [HttpPost("EmployeesConfirm")]
 public IActionResult EmployeesConfirm(EmployeesEnterViewModel viewModel)
     {
-        var employees_no = viewModel.EmployeeNo?.Trim() ?? string.Empty;
+        if (!ModelState.IsValid)
+   {
+        return View("EmployeesEnter", viewModel);
+    }
+    
+    var employees_no = viewModel.EmployeeNo?.Trim() ?? string.Empty;
+    
     try
     {
         _service.Exists(employees_no);

@@ -13,16 +13,16 @@ namespace WebApp_Exercise.Infrastructures.Entities;
         [Required]
         [Column("dept_name")]
         [StringLength(50)]
-        public string DeptName { get; set; } = string.Empty;
+        public string? DeptName { get; set; } = string.Empty;
 
         [Required]
         [Column("created_at")]
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
 
         [Required]
         [Column("created_emp_no")]
         [StringLength(10)]
-        public string CreatedEmpNo { get; set; } = string.Empty;
+        public string? CreatedEmpNo { get; set; } = string.Empty;
 
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }

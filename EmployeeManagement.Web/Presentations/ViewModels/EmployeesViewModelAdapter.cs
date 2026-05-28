@@ -18,14 +18,14 @@ public class EmployeesViewModelAdapter : IRestorer<Employees, EmployeesEnterView
 
         var employees = new Employees(
             target.EmployeeNo,
-            target.Name,
+            target.Name ?? "",
             target.Birthday,
             target.Email,
             target.HireDate,
             target.DeptId,
             target.Status,
             target.CreatedAt,
-            target.CreatedEmpNo
+            target.CreatedEmpNo ?? ""
         );
         return employees;
     }
@@ -41,10 +41,10 @@ public class EmployeesViewModelAdapter : IRestorer<Employees, EmployeesEnterView
                 Email = emp.Email,
                 HireDate = emp.HireDate,
                 DeptId = emp.DeptId,
-                DeptName = emp.DeptName,
+                DeptName = emp.DeptName ?? "",
                 Status = emp.Status,
                 CreatedAt = emp.Created_at,
-                CreatedEmpNo = emp.Created_emp_no,
+                CreatedEmpNo = emp.Created_emp_no ?? "",
                 UpdatedAt = emp.Updated_at,
                 UpdatedEmpNo = emp.Updated_emp_no
         }).ToList();

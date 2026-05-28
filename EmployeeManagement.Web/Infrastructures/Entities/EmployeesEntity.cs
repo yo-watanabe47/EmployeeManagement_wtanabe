@@ -27,7 +27,7 @@ namespace WebApp_Exercise.Infrastructures.Entities;
         [Required]
         [Column("email")]
         [StringLength(100)]
-        public string Email { get; set; } 
+        public string Email { get; set; } = string.Empty;
         
         [Required]
         [Column("hire_date")]

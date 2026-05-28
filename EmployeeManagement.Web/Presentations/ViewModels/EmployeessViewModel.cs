@@ -9,7 +9,7 @@ public class EmployeesViewModel
         public string EmployeeNo { get;init; } = string.Empty;
         public string Name { get; init; } = string.Empty;
         public DateOnly Birthday { get; init; }
-        public string Email { get; init; } 
+        public string Email { get; init; } = string.Empty;
         public DateOnly HireDate { get; init; }
         public int DeptId { get; init; } 
         public int Status { get; init; } 

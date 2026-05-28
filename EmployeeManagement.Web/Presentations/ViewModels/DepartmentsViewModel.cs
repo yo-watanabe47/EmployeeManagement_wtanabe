@@ -5,10 +5,10 @@ namespace WebApp_Exercise.Presentations.ViewModels;
 
 public class DepartmentsViewModel
 {
-    public int Id { get; init; }
-        public string DeptName { get; init; } = string.Empty;
-        public DateTime CreatedAt { get; init; } = DateTime.Now;
-        public string CreatedEmpNo { get; init; } = string.Empty;
+    public int? Id { get; init; }
+        public string? DeptName { get; init; } = string.Empty;
+        public DateTime? CreatedAt { get; init; } = DateTime.UtcNow;
+        public string? CreatedEmpNo { get; init; } = string.Empty;
         public DateTime? UpdatedAt { get; init; } 
         public string? UpdatedEmpNo { get; init; }
 
