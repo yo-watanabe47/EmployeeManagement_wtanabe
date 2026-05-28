@@ -28,7 +28,7 @@
                 @* 生年月日 *@
                 <div class="mb-3">
                     <label asp-for="Birthday" class="form-label"></label>
-                    <input asp-for="Birthday" class="form-control" />
+                    <input asp-for="Birthday" class="form-control" type="date" />
                     <span asp-validation-for="Birthday" class="text-danger"></span>
                 </div>
                  @* メールアドレス *@
@@ -40,7 +40,7 @@
                 @* 入社日 *@
                 <div class="mb-3">
                     <label asp-for="HireDate" class="form-label"></label>
-                    <input asp-for="HireDate" class="form-control" />
+                    <input asp-for="HireDate" class="form-control" type="date" />
                     <span asp-validation-for="HireDate" class="text-danger"></span>
                 </div>
                  @* 部門ID *@

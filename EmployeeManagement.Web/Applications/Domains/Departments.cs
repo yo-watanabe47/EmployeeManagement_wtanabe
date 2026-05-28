@@ -18,7 +18,13 @@ public class Departments
     
     public string? Updated_emp_no { get; init; } = null;
 
-    public Departments(int? id , string dept_name , DateTime created_at, string created_emp_no, DateTime? updated_at, string? updated_emp_no)
+    public Departments(
+        int? id ,
+        string dept_name ,
+        DateTime created_at,
+        string created_emp_no,
+        DateTime? updated_at,
+        string? updated_emp_no)
     {
         ValidateId(id);
         ValidateDeptName(dept_name);

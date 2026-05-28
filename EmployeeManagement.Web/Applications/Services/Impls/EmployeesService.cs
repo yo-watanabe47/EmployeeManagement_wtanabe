@@ -12,9 +12,11 @@ namespace WebApp_Exercise.Applications.Services.Impls;
 public class EmployeesService : IEmployeesService
 {
     private readonly IEmployeesRepository _employeesRepository;
+    private readonly AppDbContext _context;
     public EmployeesService(AppDbContext context, IEmployeesRepository employeesRepository)
     {
         _employeesRepository = employeesRepository;
+        _context = context;
     }
     public List<Employees> GetEmployees()
     {

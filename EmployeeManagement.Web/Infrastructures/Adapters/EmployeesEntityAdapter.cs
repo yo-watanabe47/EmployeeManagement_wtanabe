@@ -48,11 +48,10 @@ IRestorer<Employees, EmployeesEntity>
         HireDate = domain.HireDate,
         DeptId = domain.DeptId,
         Status = domain.Status,
-        Createdat = domain.Created_at,
+        CreatedAt = domain.Created_at,
         CreatedEmpNo = domain.Created_emp_no,
-        Updatedat = domain.Updated_at,
+        UpdatedAt = domain.Updated_at,
         UpdatedEmpNo = domain.Updated_emp_no,
-        DeptName = domain.DeptName,
         };
     }
 }

@@ -65,9 +65,19 @@ public class Employees
         DateOnly hireDate,
         int deptId,
         int status,
-        string? created_at,
         string? created_emp_no) 
-    :this (null, name,birthday, email, hireDate, deptId, status, created_at,DateTime.UtcNow, created_emp_no, null, null) {}
+    :this (
+        null, 
+        name,
+        birthday,
+        email,
+        hireDate,
+        deptId,
+        status,
+        DateTime.UtcNow,
+        created_emp_no,
+        null,
+        null) {}
 
  
 }
