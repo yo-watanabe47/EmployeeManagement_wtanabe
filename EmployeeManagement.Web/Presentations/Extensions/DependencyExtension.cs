@@ -33,6 +33,14 @@ public static class DependencyExtension
     {
         services.AddScoped<DepartmentsViewModelAdapter>();
         services.AddScoped<EmployeesViewModelAdapter>();
+        services.AddScoped(
+        provider =>
+        new TempDataStore<DepartmentsEnterViewModel>("ItemRegisterViewModel")
+        );
+        services.AddScoped(
+        provider =>
+        new TempDataStore<EmployeesEnterViewModel>("ItemRegisterViewModel")
+        );
     }
 
 

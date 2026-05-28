@@ -12,11 +12,16 @@ public class DepartmentsController : Controller
 {
     private readonly IDepartmentsService _service;
     private readonly DepartmentsViewModelAdapter _adapter;
+    private readonly TempDataStore<DepartmentsEnterViewModel> _tempDataStore;
 
-    public DepartmentsController(IDepartmentsService service, DepartmentsViewModelAdapter adapter)
+    public DepartmentsController(
+        IDepartmentsService service,
+        DepartmentsViewModelAdapter adapter,
+        TempDataStore<DepartmentsEnterViewModel> tempDataStore)
     {
         _service = service;
         _adapter = adapter;
+        _tempDataStore = tempDataStore;
     }
 [Route("DepartmentsView")]
 
@@ -38,12 +43,14 @@ public class DepartmentsController : Controller
 public IActionResult DepartmentsEnter()
     {
         DepartmentsEnterViewModel? viewModel = null;
+        viewModel = _tempDataStore.Load(this);
         return View(viewModel);
      }
 
 [HttpPost("DepartmentsBack")]
-public IActionResult DepartmentsBack()
+public IActionResult DepartmentsBack(DepartmentsEnterViewModel viewModel)
     {
+        _tempDataStore.Save(this, viewModel);
         return RedirectToAction("DepartmentsEnter");
     } 
 
@@ -68,7 +75,7 @@ public IActionResult DepartmentsConfirm(DepartmentsEnterViewModel viewModel)
 [HttpPost("DepartmentsRegister")]
 public IActionResult DepartmentsRegister(DepartmentsEnterViewModel viewModel)
     {
-
+        _tempDataStore.Save(this, viewModel);
     return RedirectToAction("DepartmentsComplete");
     } 
 
@@ -77,6 +84,7 @@ public IActionResult DepartmentsRegister(DepartmentsEnterViewModel viewModel)
 public IActionResult DepartmentsComplete()
 {
     DepartmentsEnterViewModel? viewModel = null;
+    viewModel = _tempDataStore.Load(this);
     if (viewModel == null)
     {
         return RedirectToAction("DepartmentsEnter");

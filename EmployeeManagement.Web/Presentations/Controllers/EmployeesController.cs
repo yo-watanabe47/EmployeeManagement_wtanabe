@@ -12,11 +12,16 @@ public class EmployeesController : Controller
 {
     private readonly IEmployeesService _service;
     private readonly EmployeesViewModelAdapter _adapter;
+    private readonly TempDataStore<EmployeesEnterViewModel> _tempDataStore;
 
-    public EmployeesController(IEmployeesService service, EmployeesViewModelAdapter adapter)
+    public EmployeesController(
+        IEmployeesService service,
+        EmployeesViewModelAdapter adapter,
+        TempDataStore<EmployeesEnterViewModel> tempDataStore)
     {
         _service = service;
         _adapter = adapter;
+        _tempDataStore = tempDataStore;
     }
 
 
@@ -41,12 +46,14 @@ public IActionResult EmployeesView()
 public IActionResult EmployeesEnter()
     {
         EmployeesEnterViewModel? viewModel = null;
+        viewModel = _tempDataStore.Load(this);
         return View(viewModel);
      }
 
 [HttpPost("EmployeesBack")]
-public IActionResult EmployeesBack()
+public IActionResult EmployeesBack(EmployeesEnterViewModel viewModel)
     {
+        _tempDataStore.Save(this, viewModel);
         return RedirectToAction("EmployeesEnter");
     } 
 
@@ -71,7 +78,7 @@ public IActionResult EmployeesConfirm(EmployeesEnterViewModel viewModel)
 [HttpPost("EmployeesRegister")]
 public IActionResult EmployeesRegister(EmployeesEnterViewModel viewModel)
     {
-
+        _tempDataStore.Save(this, viewModel);
     return RedirectToAction("EmployeesComplete");
     } 
 
@@ -80,6 +87,7 @@ public IActionResult EmployeesRegister(EmployeesEnterViewModel viewModel)
 public IActionResult EmployeesComplete()
 {
     EmployeesEnterViewModel? viewModel = null;
+    viewModel = _tempDataStore.Load(this);
     if (viewModel == null)
     {
         return RedirectToAction("EmployeesEnter");

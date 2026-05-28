@@ -30,9 +30,10 @@ public class EmployeesRepository : IEmployeesRepository
     public List<Employees> FindAll()
     {
         var employeesEntities = _appDbContext.Employees
-            .Include(e => e.Departments) 
+            .Include(e => e.Departments)
+            .OrderBy(e => e.Id)
             .ToList();
-        var employees = employeesEntities.Select(entity => _employeesAdapter.Restore(entity)).ToList();
+        var employees = employeesEntities.Select(e => _employeesAdapter.Restore(e)).ToList();
         return employees;
     }
     

@@ -31,9 +31,11 @@ public class DepartmentsRepository : IDepartmentsRepository
     }
     public List<Departments> FindAll()
     {
-        var departmentsEntities = _appDbContext.Departments.ToList();
-        var departments = departmentsEntities.Select(entity => _departmentsAdapter.Restore(entity)).ToList();
-        return departments;
+       var departmentsEntities = _appDbContext.Departments
+        .OrderBy(d => d.Id)
+        .ToList();
+    var departments = departmentsEntities.Select(entity => _departmentsAdapter.Restore(entity)).ToList();
+    return departments;
     }
     public void Create(Departments department)
     {
