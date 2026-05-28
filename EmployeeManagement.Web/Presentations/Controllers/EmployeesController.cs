@@ -18,9 +18,10 @@ public class EmployeesController : Controller
         _service = service;
         _adapter = adapter;
     }
-[Route("EmployeesView")]
 
-    public IActionResult EmployeesView()
+
+[Route("EmployeesView")]
+public IActionResult EmployeesView()
     {
         try
         {
@@ -34,17 +35,57 @@ public class EmployeesController : Controller
             return RedirectToAction("Error", "Home");
         }
     }
-    [HttpGet("EmployeesEnter")]
-    public IActionResult EmployeesEnter()
-    {
-        return View();
-     } 
 
-[HttpPost("EmployeesEnter")]
-    public IActionResult EmployeesEnter(EmployeesEnterViewModel viewModel)
+
+[HttpGet("EmployeesEnter")]
+public IActionResult EmployeesEnter()
     {
+        EmployeesEnterViewModel? viewModel = null;
+        return View(viewModel);
+     }
+
+[HttpPost("EmployeesBack")]
+public IActionResult EmployeesBack()
+    {
+        return RedirectToAction("EmployeesEnter");
+    } 
+
+
+[HttpPost("EmployeesConfirm")]
+public IActionResult EmployeesConfirm(EmployeesEnterViewModel viewModel)
+    {
+        var employees_no = viewModel.EmployeeNo?.Trim() ?? string.Empty;
+    try
+    {
+        _service.Exists(employees_no);
+    }
+    catch (ExistsException e)
+    {
+        ModelState.AddModelError(nameof(viewModel.EmployeeNo), e.Message);
+        return View("EmployeesEnter", viewModel);
+    }
+        return View(viewModel);
+     }
+
+
+[HttpPost("EmployeesRegister")]
+public IActionResult EmployeesRegister(EmployeesEnterViewModel viewModel)
+    {
+
+    return RedirectToAction("EmployeesComplete");
+    } 
+
+
+[HttpGet("EmployeesComplete")]
+public IActionResult EmployeesComplete()
+{
+    EmployeesEnterViewModel? viewModel = null;
+    if (viewModel == null)
+    {
+        return RedirectToAction("EmployeesEnter");
+    }
     var employees = _adapter.Restore(viewModel);
     _service.EnterEmployee(employees);
-    return RedirectToAction("EmployeesView");
-    } 
+    return View(viewModel);
+}
 }

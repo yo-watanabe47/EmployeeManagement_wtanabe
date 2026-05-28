@@ -7,4 +7,5 @@ public interface IDepartmentsRepository
 {
   List<Departments> FindAll();
   void Create(Departments department);
+  bool ExistsByDeptName(string deptName);
 }

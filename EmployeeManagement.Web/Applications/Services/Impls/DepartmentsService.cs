@@ -4,7 +4,7 @@ using WebApp_Exercise.Exceptions;
 using WebApp_Exercise.Infrastructures.Context;
 namespace WebApp_Exercise.Applications.Services.Impls;
 /// <summary>
-/// 商品登録サービスインターフェイスの実装
+/// 部門登録サービスインターフェイスの実装
 /// </summary>
 
 
@@ -37,6 +37,14 @@ public class DepartmentsService : IDepartmentsService
         {
             _context.Database.RollbackTransaction();
             throw;
+        }
+    }
+        public void Exists(string deptName)
+    {
+        var exists = _departmentsRepository.ExistsByDeptName(deptName);
+        if (exists)
+        {
+            throw new ExistsException($"部門名:{deptName}は既に存在します。");
         }
     }
 }

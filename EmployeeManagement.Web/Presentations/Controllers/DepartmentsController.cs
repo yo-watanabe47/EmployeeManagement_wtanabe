@@ -35,18 +35,56 @@ public class DepartmentsController : Controller
         }
     }
 [HttpGet("DepartmentsEnter")]
-    public IActionResult DepartmentsEnter()
+public IActionResult DepartmentsEnter()
     {
-        return View();
-     } 
+        DepartmentsEnterViewModel? viewModel = null;
+        return View(viewModel);
+     }
 
-[HttpPost("DepartmentsEnter")]
-    public IActionResult DepartmentsEnter(DepartmentsEnterViewModel viewModel)
+[HttpPost("DepartmentsBack")]
+public IActionResult DepartmentsBack()
     {
+        return RedirectToAction("DepartmentsEnter");
+    } 
+
+
+[HttpPost("DepartmentsConfirm")]
+public IActionResult DepartmentsConfirm(DepartmentsEnterViewModel viewModel)
+    {
+        var deptname = viewModel.DeptName?.Trim() ?? string.Empty;
+    try
+    {
+        _service.Exists(deptname);
+    }
+    catch (ExistsException e)
+    {
+        ModelState.AddModelError(nameof(viewModel.DeptName), e.Message);
+        return View("DepartmentsEnter", viewModel);
+    }
+        return View(viewModel);
+     }
+
+
+[HttpPost("DepartmentsRegister")]
+public IActionResult DepartmentsRegister(DepartmentsEnterViewModel viewModel)
+    {
+
+    return RedirectToAction("DepartmentsComplete");
+    } 
+
+
+[HttpGet("DepartmentsComplete")]
+public IActionResult DepartmentsComplete()
+{
+    DepartmentsEnterViewModel? viewModel = null;
+    if (viewModel == null)
+    {
+        return RedirectToAction("DepartmentsEnter");
+    }
     var departments = _adapter.Restore(viewModel);
     _service.EnterDepartment(departments);
-    return RedirectToAction("DepartmentsView");
-    } 
+    return View(viewModel);
+}
 
 
 }

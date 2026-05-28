@@ -41,6 +41,9 @@ public class DepartmentsRepository : IDepartmentsRepository
         _appDbContext.Departments.Add(departmentsEntity);
         _appDbContext.SaveChanges();
     }
-
+    public bool ExistsByDeptName(string deptName)
+    {
+        return _appDbContext.Departments.Any(d => d.DeptName == deptName);
+    }
 
 }

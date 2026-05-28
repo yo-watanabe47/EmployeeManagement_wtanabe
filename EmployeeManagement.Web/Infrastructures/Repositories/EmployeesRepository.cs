@@ -6,7 +6,7 @@ using WebApp_Exercise.Infrastructures.Adapters;
 using WebApp_Exercise.Infrastructures.Context;
 namespace WebApp_Exercise.Infrastructures.Repositories;
 /// <summary>
-/// ドメインオブジェクト:商品のCRUD操作インターフェイスの実装
+/// ドメインオブジェクト:従業員のCRUD操作インターフェイスの実装
 /// </summary>
 public class EmployeesRepository : IEmployeesRepository
 {
@@ -41,6 +41,10 @@ public class EmployeesRepository : IEmployeesRepository
         var employeesEntity = _employeesAdapter.Convert(employee);
         _appDbContext.Employees.Add(employeesEntity);
         _appDbContext.SaveChanges();
+    }
+    public bool ExistsByEmpNo(string employee_No)
+    {
+        return _appDbContext.Employees.Any(e => e.EmployeeNo == employee_No);
     }
 
 }

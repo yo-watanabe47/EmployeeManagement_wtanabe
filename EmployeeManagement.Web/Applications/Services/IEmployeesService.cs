@@ -7,4 +7,5 @@ public interface IEmployeesService
 {
        List<Employees> GetEmployees();
        void EnterEmployee(Employees employee);
+       void Exists(string employee_No);
 }

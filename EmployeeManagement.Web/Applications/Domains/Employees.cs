@@ -12,11 +12,11 @@ public class Employees
         public DateOnly HireDate { get; set; }
         public int DeptId { get; set; } 
         public int Status { get; set; } 
-        public DateTime? Created_at { get; init; } = DateTime.Now;
+        public DateTime Created_at { get; init; } = DateTime.Now;
         public string Created_emp_no { get; init; } = string.Empty;
         public DateTime? Updated_at { get; init; } = DateTime.Now;
         public string? Updated_emp_no { get; init; } = null;
-        public String DeptName { get; set; }
+        public String? DeptName { get; set; }
 
     public Employees(
         int? id ,
@@ -31,7 +31,7 @@ public class Employees
         string created_emp_no,
         DateTime? updated_at,
         string? updated_emp_no,
-        String deptName)
+        String? deptName)
     {
         // ValidateId(id);
         // ValidateEmployeeNo(employee_No);
@@ -65,9 +65,11 @@ public class Employees
         DateOnly hireDate,
         int deptId,
         int status,
+        DateTime created_at,
         string? created_emp_no) 
     :this (
-        null, 
+        null,
+        employee_No, 
         name,
         birthday,
         email,
@@ -76,6 +78,7 @@ public class Employees
         status,
         DateTime.UtcNow,
         created_emp_no,
+        null,
         null,
         null) {}
 

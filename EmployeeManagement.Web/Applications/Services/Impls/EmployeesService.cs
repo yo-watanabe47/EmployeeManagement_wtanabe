@@ -38,4 +38,12 @@ public class EmployeesService : IEmployeesService
             throw;
         }
     }
+    public void Exists(string employee_No)
+    {
+        var exists = _employeesRepository.ExistsByEmpNo(employee_No);
+        if (exists)
+        {
+            throw new ExistsException($"従業員番号:{employee_No}は既に存在します。");
+        }
+    }
 }

@@ -41,7 +41,7 @@ IRestorer<Employees, EmployeesEntity>
         return new EmployeesEntity
         {
         Id = domain.Id,
-        EmployeeNo = domain.EmployeeNo,
+        EmployeeNo = domain.Employee_No,
         Name = domain.Name,
         Birthday = domain.Birthday,
         Email = domain.Email,

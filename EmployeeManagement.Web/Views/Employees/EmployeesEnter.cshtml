@@ -10,7 +10,7 @@
         <div class="col-md-5 col-sm-7">
 
             @* 送信先はControllerのConfirm()アクション*@
-            <form asp-action="EmployeesEnter" asp-controller="Employees" method="post">
+            <form asp-action="EmployeesConfirm" asp-controller="Employees" method="post">
 
                 @* 社員番号 *@
                 <div class="mb-3">
@@ -45,15 +45,9 @@
                 </div>
                  @* 部門ID *@
                 <div class="mb-3">
-                    <label asp-for="DeptNo" class="form-label"></label>
-                    <input asp-for="DeptNo" class="form-control" />
-                    <span asp-validation-for="DeptNo" class="text-danger"></span>
-                </div>
-                @* 在籍状態 *@
-                <div class="mb-3">
-                    <label asp-for="Status" class="form-label"></label>
-                    <input asp-for="Status" class="form-control" />
-                    <span asp-validation-for="Status" class="text-danger"></span>
+                    <label asp-for="DeptId" class="form-label"></label>
+                    <input asp-for="DeptId" class="form-control" />
+                    <span asp-validation-for="DeptId" class="text-danger"></span>
                 </div>
                 @* 登録者ID *@
                 <div class="mb-3">

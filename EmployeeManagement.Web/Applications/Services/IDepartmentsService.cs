@@ -7,4 +7,5 @@ public interface IDepartmentsService
 {
        List<Departments> GetDepartments();
        void EnterDepartment(Departments department);
+       void Exists(string deptName);
 }
