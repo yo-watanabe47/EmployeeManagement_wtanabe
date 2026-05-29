@@ -1,8 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ホーム画面";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-dark"> 社員管理システム</h1>
+        <hr class="my-3 mx-auto" style="width: 100px; border-top: 2px solid #333;">
+        <p class="text-secondary small">MENU</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-8">
+            <div class="d-grid gap-2">
+                
+                <a asp-controller="Employees" asp-action="EmployeesView" 
+                   class="btn btn-outline-dark btn-md py-2.5 fw-bold rounded-0">
+                   社員一覧
+                </a>
+
+                <a asp-controller="Employees" asp-action="EmployeesEnter" 
+                   class="btn btn-outline-dark py-2.5 fw-bold rounded-0 mb-3">
+                   社員登録
+                </a>
+
+                <a asp-controller="Departments" asp-action="DepartmentsView" 
+                   class="btn btn-outline-dark btn-md py-2.5 fw-bold rounded-0">
+                   部門一覧
+                </a>
+
+                <a asp-controller="Departments" asp-action="DepartmentsEnter" 
+                   class="btn btn-outline-dark btn-md py-2.5 fw-bold rounded-0">
+                   部門登録
+                </a>
+
+            </div>
+        </div>
+    </div>
 </div>
